@@ -1,0 +1,23 @@
+{% block content %}
+<main id="main">
+  <form action="/api/icons" enctype="multipart/form-data" method="POST">
+    <input type="file" name="upload" />
+    <button type="submit">提交</button>
+  </form>
+</main>
+{% endblock %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="index.css">
+{% endblock %}
+
+{% block scripts %}
+<script src="/vendor.dll.js"></script>
+<script src="/tool.dll.js"></script>
+<script src="/commons.js"></script>
+<script src="index.js"></script>
+{% endblock%}
+
+
+{% extends "tpls/page.html" %}
