@@ -8,7 +8,9 @@ import { compose } from 'redux'
 import { createSelector } from 'reselect'
 import { Map, List, fromJS } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import style from './index.styl'
 
+console.log(style)
 
 /// MODEL
 

@@ -11,7 +11,9 @@ import { Router, Route, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 
-
+/**
+ * Combine all the reducer.
+ */
 const store = createStore(
   combineReducers({
     app: iconsReducer,
@@ -21,11 +23,9 @@ const store = createStore(
     thunkMiddleware
   )
 )
+
 const mountNode = id => document.getElementById(id)
 const history = syncHistoryWithStore(hashHistory, store)
-
-
-let unsubscribe = store.subscribe(_ => console.log(store.getState()))
 
 
 const wrapper = rootRoute => (
@@ -38,9 +38,7 @@ const wrapper = rootRoute => (
 
 
 
-
-
-
 render(wrapper(Sitemap), mountNode('main'))
 
 
+let unsubscribe = store.subscribe(_ => console.log(store.getState()))
