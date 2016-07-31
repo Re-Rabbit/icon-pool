@@ -1,17 +1,46 @@
 // -*- mode: react -*-
+// @flow
 
 import React from 'react'
 import { render } from 'react-dom'
 import Sitemap from './sitemap.js'
+import { iconsReducer } from './app.js'
+import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
+import { Router, Route, hashHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 
-import $ from 'jquery'
+const store = createStore(
+  combineReducers({
+    app: iconsReducer,
+    routing: routerReducer
+  }),
+  applyMiddleware(
+    thunkMiddleware
+  )
+)
+const mountNode = id => document.getElementById(id)
+const history = syncHistoryWithStore(hashHistory, store)
 
-fetch('/api/icons')
-    .then(res => res.json())
-    .then(res => {
-        $('.icons').append(res.join(''))
-    })
+
+let unsubscribe = store.subscribe(_ => console.log(store.getState()))
 
 
-render(Sitemap, document.getElementById('main'))
+const wrapper = rootRoute => (
+  <Provider store={store}>
+    <Router history={history}>
+      {rootRoute}
+    </Router>
+  </Provider>
+)
+
+
+
+
+
+
+render(wrapper(Sitemap), mountNode('main'))
+
+

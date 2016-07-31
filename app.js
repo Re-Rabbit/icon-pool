@@ -1,14 +1,19 @@
 // -*- mode: react -*-
+// @flow
+
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import { compose } from 'redux'
+import { createSelector } from 'reselect'
+import { Map, List, fromJS } from 'immutable'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 
 /// MODEL
 
 const initState = {
-  icons: []
+  icons: List()
 }
 
 
@@ -30,16 +35,18 @@ const receiveIcons = res => {
 }
 
 
+
 const fetchIcons = _ => dispatch => {
   dispatch(requestIcons())
 
   return fetch('/api/icons')
     .then(res => res.json())
-    .then(res => dispatch(receiveIcons(res)))
+    .then(fromJS)
+    .then(compose(dispatch, receiveIcons))
 }
 
 
-export function getIcons(state = initState, action) {
+export function iconsReducer(state = initState, action) {
   switch(action.type) {
     case REQUEST_ICONS:
       return Object.assign({}, state)
@@ -63,30 +70,45 @@ class Icon extends Component {
 }
 
 class App extends Component {
+
+  props: {
+    icons: Array<string>
+  }
+
+
   componentDidMount() {
     let { dispatch } = this.props
     dispatch(fetchIcons())
   }
+
   render() {
+
+    let iconComponent = (n, idx) => <Icon icon={n} key={idx} />
+
     return (
       <div>
-        {
-          this.props.icons.map(
-            n => <Icon icon={n} />
-          )
-        }
+        { this.props.icons.map(iconComponent) }
       </div>
     )
+
   }
+
 }
 
 
-
-function select(state) {
-  return {
-    icons: state.app.icons
-  }
+App.defaultProps = { icons: [] }
+App.propTypes = {
+  icons: ImmutablePropTypes.list
 }
 
 
-export default connect(select)(App)
+/// Connection
+
+
+const iconsSelector = createSelector(
+  state => ({ icons: state.app.icons }),
+  icons => icons
+)
+
+
+export default connect(iconsSelector)(App)
