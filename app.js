@@ -63,10 +63,71 @@ export function iconsReducer(state = initState, action) {
 
 /// VIEW
 
+function CSSLayoutFixedBlock(fixed) {
+  if(!fixed) return ""
+  return `block-fixed-${fixed}`
+}
+
+function CSSLayoutCenterBlock(classname) {
+  if(!classname) return ""
+  return `block-center ${classname}`
+}
+
+
+class Block extends Component {
+  render() {
+
+    let { fixed, center } = this.props
+
+    let classNames = [
+      CSSLayoutFixedBlock(fixed),
+      CSSLayoutCenterBlock(center)
+    ]
+
+    return (
+      <div className={ classNames.join('') }>
+        { this.props.children }
+      </div>
+    )
+  }
+}
+
+
 class Icon extends Component {
   render() {
     return (
-      <div dangerouslySetInnerHTML={{__html: this.props.icon}}></div>
+      <div className={ style.icon }>
+        <div dangerouslySetInnerHTML={{__html: this.props.icon}}></div>
+        <div className={ style.iconText }>
+          code: e600
+        </div>
+        <div className={ style.iconText }>
+          name: flower
+        </div>
+      </div>
+    )
+  }
+}
+
+class Aside extends Component {
+  render() {
+    return (
+      <Block fixed="left">
+        <div className={ style.aside }>
+          <div class="action">E</div>
+          <div class="action">A</div>
+        </div>
+      </Block>
+    )
+  }
+}
+
+class Main extends Component {
+  render() {
+    return (
+      <Block center={ style.main }>
+        { this.props.children }
+      </Block>
     )
   }
 }
@@ -85,11 +146,14 @@ class App extends Component {
 
   render() {
 
-    let iconComponent = (n, idx) => <Icon icon={n} key={idx} />
+    let iconComponent = (n, idx) => (<Icon icon={n} key={idx} />)
 
     return (
       <div>
-        { this.props.icons.map(iconComponent) }
+        <Aside />
+        <Main>
+          { this.props.icons.map(iconComponent) }
+        </Main>
       </div>
     )
 

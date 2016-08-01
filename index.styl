@@ -1,8 +1,54 @@
+@require "styles/space"
 @require "styles/layout"
+@require "styles/reset"
 
-.svg
-  size 10px 20px
+/// Var.
 
-  
+$bg1 = #201f2d
+$bg2 = #0f0f1b
+$cc  = #b39ddb
+
+
+export-reset()
+
+body
+  cc $cc $bg1
+
+body
+  pl 5rem
+
+$mainw = 54rem
+
+:local(.main)
+  w $mainw
+
+
+:local(.icon)
+  dis ib
+  w ($mainw / 6)
+  ta cen
+  pad 1rem
+
+
+.block-fixed
+  &-top
+    fill(t, true)
+  &-left
+    fill(l, true)
+  &-bottom
+    fill(b, true)
+  &-right
+    fill(r, true)
+
+.block-center
+  mx a
+
+.aside
+  size 100%
+  min-width 5rem
+  bg $bg2
+
 :export
-  svg svg1
+  icon icon
+  aside aside
+  fixedTop fixed-top
