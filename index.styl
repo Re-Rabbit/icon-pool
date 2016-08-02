@@ -1,4 +1,4 @@
-@require "styles/space"
+//@require "styles/space"
 @require "styles/layout"
 @require "styles/reset"
 
@@ -6,7 +6,10 @@
 
 $bg1 = #201f2d
 $bg2 = #0f0f1b
-$cc  = #b39ddb
+$cc  = #bdbdbd
+$pc  = #b39ddb
+
+$goldenRatio = 1.618033
 
 
 export-reset()
@@ -24,10 +27,29 @@ $mainw = 54rem
 
 
 :local(.icon)
+  $w = ($mainw / 8)
+
   dis ib
-  w ($mainw / 6)
+  size $w ($w * $goldenRatio)
   ta cen
-  pad 1rem
+  cur ptr
+
+  //&.active
+  //  :local(.iconSvg) path
+  //    fill rgba($pc, 0.88) !important
+
+:local(.iconSvg)
+  py 1.5rem
+
+  svg
+    size 4rem
+  path
+    fill rgba($pc, 0.72) !important
+    
+
+:local(.iconCode)
+  cc rgba($cc, 0.72)
+  fz 0.8rem
 
 
 .block-fixed

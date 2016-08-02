@@ -95,14 +95,15 @@ class Block extends Component {
 
 class Icon extends Component {
   render() {
+    let { icon } = this.props
     return (
       <div className={ style.icon }>
-        <div dangerouslySetInnerHTML={{__html: this.props.icon}}></div>
-        <div className={ style.iconText }>
-          code: e600
+        <div className={ style.iconSvg } dangerouslySetInnerHTML={{ __html: icon.get("svg") }}></div>
+        <div className={ style.iconName }>
+          { icon.get("name") }
         </div>
-        <div className={ style.iconText }>
-          name: flower
+        <div className={ style.iconCode }>
+          { icon.get("code") }
         </div>
       </div>
     )

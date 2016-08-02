@@ -1,0 +1,18 @@
+{
+  "prefix": "ic",
+  "lastModified": "",
+  "icons": [
+    {
+      "code": "\uE600",
+      "name": "logo-elisp"
+    },
+    {
+      "code": "\uE601",
+      "name": "logo-elm"
+    },
+    {
+      "code": "\uE602",
+      "name": "logo-dlang"
+    }
+  ]
+}
