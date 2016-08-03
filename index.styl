@@ -1,6 +1,7 @@
 //@require "styles/space"
 @require "styles/layout"
 @require "styles/reset"
+@require "styles/util/position"
 
 /// Var.
 
@@ -13,6 +14,7 @@ $goldenRatio = 1.618033
 
 
 export-reset()
+
 
 body
   cc $cc $bg1
@@ -33,10 +35,15 @@ $mainw = 54rem
   size $w ($w * $goldenRatio)
   ta cen
   cur ptr
+  bdrz 4px
 
   //&.active
   //  :local(.iconSvg) path
   //    fill rgba($pc, 0.88) !important
+  //box-shadow: 0 0 10px #b39ddb inset;
+
+:local(.iconActive)
+  shadow 0 0 10px #b39ddb inset
 
 :local(.iconSvg)
   py 1.5rem
@@ -44,7 +51,7 @@ $mainw = 54rem
   svg
     size 4rem
   path
-    fill rgba($pc, 0.72) !important
+    fill rgba($cc, 1) !important
     
 
 :local(.iconCode)
@@ -54,13 +61,13 @@ $mainw = 54rem
 
 .block-fixed
   &-top
-    fill(t, true)
+    u-fill(t, true)
   &-left
-    fill(l, true)
+    u-fill(l, true)
   &-bottom
-    fill(b, true)
+    u-fill(b, true)
   &-right
-    fill(r, true)
+    u-fill(r, true)
 
 .block-center
   mx a

@@ -32,7 +32,9 @@ const RECEIVE_ICONS = 'RECEIVE_ICONS'
 const receiveIcons = res => {
   return {
     type: RECEIVE_ICONS,
-    icons: res
+    payload: {
+      icons: res
+    }
   }
 }
 
@@ -48,12 +50,35 @@ const fetchIcons = _ => dispatch => {
 }
 
 
+const TOGGLECHECKED_ICON = 'TOGGLECHECKED_ICON'
+const togggleCheckedIcon = idx => {
+  return {
+    type: TOGGLECHECKED_ICON,
+    payload: {
+      idx: idx
+    }
+  }
+}
+
+
 export function iconsReducer(state = initState, action) {
   switch(action.type) {
     case REQUEST_ICONS:
       return Object.assign({}, state)
     case RECEIVE_ICONS:
-      return Object.assign({}, state, { icons: action.icons })
+      return Object.assign({}, state, {
+        icons: action.payload.icons.map(n => {
+          return n.set('isChecked', false)
+        }),
+      })
+    case TOGGLECHECKED_ICON:
+      let { icons } = state
+      let idx = action.payload.idx
+      let target = icons.get(idx)
+
+      return Object.assign({}, state, {
+        icons: icons.set(idx, target.set('isChecked', !target.get('isChecked')))
+      })
     default:
       return state
   }
@@ -94,10 +119,15 @@ class Block extends Component {
 
 
 class Icon extends Component {
+
   render() {
-    let { icon } = this.props
+    let { icon, togggleChecked } = this.props
+
+    let activeClass = icon.get('isChecked') ? style.iconActive : ''
+    let classnames = List.of(style.icon, activeClass)
+
     return (
-      <div className={ style.icon }>
+      <div className={ classnames.toArray().join(' ') } onClick={ togggleChecked }>
         <div className={ style.iconSvg } dangerouslySetInnerHTML={{ __html: icon.get("svg") }}></div>
         <div className={ style.iconName }>
           { icon.get("name") }
@@ -108,6 +138,7 @@ class Icon extends Component {
       </div>
     )
   }
+
 }
 
 class Aside extends Component {
@@ -147,7 +178,13 @@ class App extends Component {
 
   render() {
 
-    let iconComponent = (n, idx) => (<Icon icon={n} key={idx} />)
+    let { dispatch } = this.props
+
+    let iconComponent = (n, idx) => (
+      <Icon icon={n}
+            key={idx}
+            togggleChecked={ _ => dispatch(togggleCheckedIcon(idx)) } />
+    )
 
     return (
       <div>
@@ -155,6 +192,7 @@ class App extends Component {
         <Main>
           { this.props.icons.map(iconComponent) }
         </Main>
+        { this.props.children }
       </div>
     )
 
