@@ -146,8 +146,10 @@ class Aside extends Component {
     return (
       <Block fixed="left">
         <div className={ style.aside }>
-          <div class="action">E</div>
-          <div class="action">A</div>
+          <div>myicons</div>
+          <div>group</div>
+          <div>tags</div>
+          <div>temporary</div>
         </div>
       </Block>
     )
