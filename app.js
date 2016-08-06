@@ -9,6 +9,7 @@ import { createSelector } from 'reselect'
 import { Map, List, fromJS } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import style from './index.styl'
+import Aside from 'icon-pool/containers/aside.react.js'
 
 console.log(style)
 
@@ -85,137 +86,15 @@ export function iconsReducer(state = initState, action) {
 }
 
 
-
-/// VIEW
-
-function CSSLayoutFixedBlock(fixed) {
-  if(!fixed) return ""
-  return `block-fixed-${fixed}`
-}
-
-function CSSLayoutCenterBlock(classname) {
-  if(!classname) return ""
-  return `block-center ${classname}`
-}
-
-
-class Block extends Component {
-  render() {
-
-    let { fixed, center } = this.props
-
-    let classNames = [
-      CSSLayoutFixedBlock(fixed),
-      CSSLayoutCenterBlock(center)
-    ]
-
-    return (
-      <div className={ classNames.join('') }>
-        { this.props.children }
-      </div>
-    )
-  }
-}
-
-
-class Icon extends Component {
-
-  render() {
-    let { icon, togggleChecked } = this.props
-
-    let activeClass = icon.get('isChecked') ? style.iconActive : ''
-    let classnames = List.of(style.icon, activeClass)
-
-    return (
-      <div className={ classnames.toArray().join(' ') } onClick={ togggleChecked }>
-        <div className={ style.iconSvg } dangerouslySetInnerHTML={{ __html: icon.get("svg") }}></div>
-        <div className={ style.iconName }>
-          { icon.get("name") }
-        </div>
-        <div className={ style.iconCode }>
-          { icon.get("code") }
-        </div>
-      </div>
-    )
-  }
-
-}
-
-class Aside extends Component {
-  render() {
-    return (
-      <Block fixed="left">
-        <div className={ style.aside }>
-          <div>myicons</div>
-          <div>group</div>
-          <div>tags</div>
-          <div>temporary</div>
-        </div>
-      </Block>
-    )
-  }
-}
-
-class Main extends Component {
-  render() {
-    return (
-      <Block center={ style.main }>
-        { this.props.children }
-      </Block>
-    )
-  }
-}
-
 class App extends Component {
-
-  props: {
-    icons: Array<string>
-  }
-
-
-  componentDidMount() {
-    let { dispatch } = this.props
-    dispatch(fetchIcons())
-  }
-
   render() {
-
-    let { dispatch } = this.props
-
-    let iconComponent = (n, idx) => (
-      <Icon icon={n}
-            key={idx}
-            togggleChecked={ _ => dispatch(togggleCheckedIcon(idx)) } />
-    )
-
     return (
       <div>
         <Aside />
-        <Main>
-          { this.props.icons.map(iconComponent) }
-        </Main>
         { this.props.children }
       </div>
     )
-
   }
-
 }
 
-
-App.defaultProps = { icons: [] }
-App.propTypes = {
-  icons: ImmutablePropTypes.list
-}
-
-
-/// Connection
-
-
-const iconsSelector = createSelector(
-  state => ({ icons: state.app.icons }),
-  icons => icons
-)
-
-
-export default connect(iconsSelector)(App)
+export default App

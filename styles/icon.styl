@@ -1,0 +1,35 @@
+$bg1 = #201f2d
+$bg2 = #0f0f1b
+$cc  = #bdbdbd
+$pc  = #b39ddb
+$mainw = 70rem
+
+$goldenRatio = 1.618033
+
+:local(.icon)
+  $w = ($mainw / 8)
+  dis ib
+  size $w ($w * $goldenRatio)
+  pad 0.5rem
+
+:local(.iconMain)
+  pad 0.5rem
+  bdrz 4px
+  ta cen
+  cur ptr
+
+:local(.iconActive)
+  shadow 0 0 10px $pc inset
+
+:local(.iconSvg)
+  py 1.5rem
+
+  svg
+    size 4rem
+  path
+    fill rgba($cc, 1) !important
+    
+
+:local(.iconCode)
+  cc rgba($cc, 0.72)
+  fz 0.8rem

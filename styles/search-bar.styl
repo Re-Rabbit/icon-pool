@@ -1,0 +1,33 @@
+// -*- coding: utf-8 -*-
+// -*- mode: stylus -*-
+
+$bg1 = #201f2d
+$bg2 = #0f0f1b
+$cc  = #bdbdbd
+$pc  = #b39ddb
+
+::-webkit-input-placeholder
+  cc rgba($pc, 0.56)
+
+:local(.searchBarField)
+  fz 1rem
+  ff ext
+  lh 1.5
+  pad 0.5rem 0.8rem
+
+  w 100%
+
+  bd 1px solid rgba($pc, 0.28)
+
+  bdrz 4px
+  cc $pc a0
+
+
+  &:focus
+    outline 0
+
+  &:hover
+    bdc rgba($pc, 0.72)
+
+  &:focus
+    shadow 0 0 10px $pc inset

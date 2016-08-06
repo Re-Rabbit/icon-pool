@@ -22,41 +22,7 @@ body
 body
   pl 5rem
 
-$mainw = 54rem
-
-:local(.main)
-  w $mainw
-
-
-:local(.icon)
-  $w = ($mainw / 8)
-
-  dis ib
-  size $w ($w * $goldenRatio)
-  ta cen
-  cur ptr
-  bdrz 4px
-
-  //&.active
-  //  :local(.iconSvg) path
-  //    fill rgba($pc, 0.88) !important
-  //box-shadow: 0 0 10px #b39ddb inset;
-
-:local(.iconActive)
-  shadow 0 0 10px #b39ddb inset
-
-:local(.iconSvg)
-  py 1.5rem
-
-  svg
-    size 4rem
-  path
-    fill rgba($cc, 1) !important
-    
-
-:local(.iconCode)
-  cc rgba($cc, 0.72)
-  fz 0.8rem
+$mainw = 70rem
 
 
 .block-fixed
@@ -71,13 +37,3 @@ $mainw = 54rem
 
 .block-center
   mx a
-
-.aside
-  size 100%
-  min-width 5rem
-  bg $bg2
-
-:export
-  icon icon
-  aside aside
-  fixedTop fixed-top

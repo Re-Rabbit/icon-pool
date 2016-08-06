@@ -207,7 +207,7 @@ export default function (api) {
     icons.forEach(n => {
       let glyph = fs.createReadStream(svgFilePath(n.name))
       glyph.metadata = {
-        unicode: [n.code],
+        unicode: [`\\u${n.code.toUpperCase()}`],
         name: `${prefix}-${n.name}`
       }
       stream.write(glyph)

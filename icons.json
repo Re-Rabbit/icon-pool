@@ -3,15 +3,15 @@
   "lastModified": "",
   "icons": [
     {
-      "code": "\uE600",
+      "code": "e600",
       "name": "logo-elisp"
     },
     {
-      "code": "\uE601",
+      "code": "e601",
       "name": "logo-elm"
     },
     {
-      "code": "\uE602",
+      "code": "e602",
       "name": "logo-dlang"
     }
   ]
