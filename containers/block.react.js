@@ -3,15 +3,23 @@
 // @flow
 
 import React, { Component } from 'react'
+import style from 'icon-pool/styles/block.styl'
+
+console.log(style)
 
 function CSSLayoutFixedBlock(fixed) {
   if(!fixed) return ""
-  return `block-fixed-${fixed}`
+  switch(fixed) {
+    case 'top': return style.blockFixedTop
+    case 'right': return style.blockFixedRight
+    case 'bottom': return style.blockFixedBottom
+    case 'left': return style.blockFixedLeft
+  }
 }
 
 function CSSLayoutCenterBlock(classname) {
   if(!classname) return ""
-  return `block-center ${classname}`
+  return `${style.blockCenter} ${classname}`
 }
 
 

@@ -6,6 +6,6 @@
 import { createSelector } from 'reselect'
 
 export default createSelector(
-  state => ({ icons: state.app.icons }),
+  state => ({ icons: state.app.dashboard.icons }),
   icons => icons
 )

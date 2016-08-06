@@ -1,17 +1,7 @@
 //@require "styles/space"
 @require "styles/layout"
 @require "styles/reset"
-@require "styles/util/position"
-
-/// Var.
-
-$bg1 = #201f2d
-$bg2 = #0f0f1b
-$cc  = #bdbdbd
-$pc  = #b39ddb
-
-$goldenRatio = 1.618033
-
+@require "_config"
 
 export-reset()
 
@@ -22,18 +12,5 @@ body
 body
   pl 5rem
 
-$mainw = 70rem
-
-
-.block-fixed
-  &-top
-    u-fill(t, true)
-  &-left
-    u-fill(l, true)
-  &-bottom
-    u-fill(b, true)
-  &-right
-    u-fill(r, true)
-
-.block-center
-  mx a
+::-webkit-input-placeholder
+  cc rgba($pc, 0.56)

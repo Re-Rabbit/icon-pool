@@ -4,19 +4,19 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Sitemap from './sitemap.js'
-import { iconsReducer } from './app.js'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { Router, Route, hashHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import appReducer from 'icon-pool/reducers/app.reducer.js'
 
 /**
  * Combine all the reducer.
  */
 const store = createStore(
   combineReducers({
-    app: iconsReducer,
+    app: appReducer,
     routing: routerReducer
   }),
   applyMiddleware(
