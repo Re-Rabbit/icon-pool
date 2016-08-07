@@ -8,7 +8,7 @@ import ttf2eot from 'ttf2eot'
 import ttf2woff from 'ttf2woff'
 import ttf2woff2 from 'ttf2woff2'
 import svgicons2svgfont from 'svgicons2svgfont'
-//import call_cmd from '0x00-pl--avg-pack-to-ttf'
+import call_pipe from '0x00-pl--svg-pack-to-ttf'
 
 
 
@@ -89,6 +89,33 @@ export default function (api) {
     res.status(200).end()
   })
 
+
+    function compile_ttf(cb){
+        const svg_path = path.join(__dirname, 'uploads')
+        const out_dir = path.join(__dirname, 'dist')
+        const out_ttf = path.join(out_dir, 'out.ttf')
+        const out_json = path.join(out_dir, 'out.json')
+
+        call_pipe({
+            svg_path: svg_path,
+            out_ttf: out_ttf,
+            out_json: out_json,
+        }, cb)
+    }
+    // exports all icons to ttf and download ttf
+    api.get('/export-ttf', (req, res, next) => {
+        const out_ttf = path.join(__dirname, 'dist', 'out.ttf')
+        compile_ttf(()=>{
+            res.download(out_ttf)
+        })
+    })
+    // exports all icons to ttf and download json
+    api.get('/export-json', (req, res, next) => {
+        const out_json = path.join(__dirname, 'dist', 'out.json')
+        compile_ttf(()=>{
+            res.download(out_json)
+        })
+    })
 
   // exports checked icons
 
