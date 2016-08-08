@@ -1,5 +1,7 @@
 @require "styles/util/position"
 
+:local(.blockFixed)
+  u-fill(a, true)
 :local(.blockFixedTop)
   u-fill(t, true)
 :local(.blockFixedRight)
@@ -12,3 +14,22 @@
 
 :local(.blockCenter)
   mx a
+
+:local(.blockRow)
+  &:after
+    ctx " "
+    dis table
+    clear both
+
+:local(.blockGrid)
+  fl l
+
+for $i in (1..12)
+  :local(.blockWidth{$i})
+    w percentage($i / 12)
+
+
+:local(.borderBlock)
+  bd 1px solid #333
+  bdrz 4px
+  mb 1rem

@@ -4,7 +4,8 @@
 
 import React, { Component } from 'react'
 import Aside from 'icon-pool/containers/aside.react.js'
-import './index.styl'
+import Main from 'icon-pool/containers/main.react.js'
+import 'icon-pool/index.styl'
 
 
 class App extends Component {
@@ -12,7 +13,9 @@ class App extends Component {
     return (
       <div>
         <Aside />
-        { this.props.children }
+        <Main>
+          { this.props.children }
+        </Main>
       </div>
     )
   }
