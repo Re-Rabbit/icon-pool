@@ -1,0 +1,49 @@
+@require "styles/util/position"
+@require "styles/function/box"
+@require "../_config"
+
+$iconCw  = 2rem
+$labelCw = 6rem
+$iconw   = 0.8rem
+
+:local(.icon)
+  py 0.5rem
+  pl $iconCw
+  pr $labelCw
+  cc $pc
+  pos rela
+
+:local(.iconLast)
+  bd 0
+
+:local(.iconIconContianer)
+  u-fill l
+  w $iconCw
+  ta cen
+  py vaPad(cmpH($iconw, 1.5), cmpPad(cmpH(1rem, 1.5), 0.5rem))
+
+:local(.iconLabelContainer)
+  u-fill r
+  w $labelCw
+  ta cen
+  py vaPad(cmpH(1rem, 1.5), cmpPad(cmpH(1rem, 1.5), 0.5rem))
+
+:local(.iconIcon)
+  dis ib
+  size $iconw
+  bdrz 50%
+  bg $pc
+  va text-top
+
+:local(.iconLabel)
+  dis ib
+  pad 0.05rem 0.5rem
+  fz 0.6rem
+  cc $pc rgba($pc, 0.16)
+  va text-top
+  cur ptr
+
+:local(.iconLabelNumber)
+  fz 0.8rem
+  fw bolder
+  mr 0.25rem

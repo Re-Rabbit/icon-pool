@@ -1,3 +1,4 @@
+// -*- coding: utf-8 -*-
 // -*- mode: react -*-
 // @flow
 
@@ -35,8 +36,6 @@ const wrapper = rootRoute => (
     </Router>
   </Provider>
 )
-
-
 
 render(wrapper(Sitemap), mountNode('main'))
 

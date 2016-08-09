@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Map, List } from 'immutable'
-import style from 'icon-pool/styles/icon.styl'
+import style from 'icon-pool/styles/_icon.styl'
 
 
 export default class extends Component {

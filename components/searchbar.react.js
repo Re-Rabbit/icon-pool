@@ -4,7 +4,7 @@
 
 
 import React, { Component } from 'react'
-import style from 'icon-pool/styles/search-bar.styl'
+import style from 'icon-pool/styles/_search-bar.styl'
 
 export default class extends Component {
   render() {

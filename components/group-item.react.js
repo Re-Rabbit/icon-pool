@@ -3,20 +3,29 @@
 // @flow
 
 import React, { Component } from 'react'
-import style from 'icon-pool/styles/group-item.styl'
+import style from 'icon-pool/styles/_group-item.styl'
 
 export default class extends Component {
   render() {
-    let { last } = this.props
+    let { group, last } = this.props
 
-    let classnames = [
+    let classNames = [
       style.icon,
       last ? style.iconLast : ''
     ]
 
     return (
-      <div className={ classnames.join(' ') }>
-        ALL
+      <div className={ classNames.join(' ') }>
+        <div className={ style.iconIconContianer }>
+          <div className={ style.iconIcon }></div>
+        </div>
+        <div className={ style.iconLabelContainer }>
+          <div className={ style.iconLabel }>
+            <span className={ style.iconLabelNumber }>10</span>
+            ICONS
+          </div>
+        </div>
+        { group }
       </div>
     )
   }

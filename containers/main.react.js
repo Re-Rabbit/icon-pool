@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import style from 'icon-pool/styles/main.styl'
+import style from 'icon-pool/styles/_main.styl'
 
 export default class extends Component {
   render() {

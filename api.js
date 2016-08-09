@@ -40,6 +40,10 @@ icons.post('/', (req, res, next) => {
 
 })
 
+
+/**
+ * Get All Icons
+ */
 icons.get('/', (req, res, next) => {
 
   const IconsJsonFilePath = path.join(__dirname, 'icons.json')
@@ -54,6 +58,20 @@ icons.get('/', (req, res, next) => {
     })
   })
 
+
+  res.send(data)
+})
+
+
+icons.get('/groups', (req, res, next) => {
+  const data = [
+    'logo',
+    'action',
+    'video',
+    'test',
+    'testgroup1',
+    'testgroup2'
+  ]
 
   res.send(data)
 })

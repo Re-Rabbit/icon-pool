@@ -4,15 +4,21 @@
   "icons": [
     {
       "code": "e600",
-      "name": "logo-elisp"
+      "name": "logo-elisp",
+      "group": "logo",
+      "tags": ["emacs", "elisp"]
     },
     {
       "code": "e601",
-      "name": "logo-elm"
+      "name": "logo-elm",
+      "group": "logo",
+      "tags": ["elm"]
     },
     {
       "code": "e602",
-      "name": "logo-dlang"
+      "name": "logo-dlang",
+      "group": "logo",
+      "tags": ["d", "dlang"]
     }
   ]
 }

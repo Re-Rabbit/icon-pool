@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Block from 'icon-pool/containers/block.react.js'
-import style from 'icon-pool/styles/aside.styl'
+import style from 'icon-pool/styles/_aside.styl'
 
 export default class extends Component {
   render() {

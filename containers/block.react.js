@@ -4,7 +4,7 @@
 
 
 import React, { Component } from 'react'
-import style from 'icon-pool/styles/block.styl'
+import style from 'icon-pool/styles/_block.styl'
 
 
 
@@ -60,6 +60,16 @@ export class BorderBlock extends Component {
   render() {
     return (
       <div className={ style.borderBlock }>
+        { this.props.children }
+      </div>
+    )
+  }
+}
+
+export class PaddingBlock extends Component {
+  render() {
+    return (
+      <div className={ style.paddingBlock }>
         { this.props.children }
       </div>
     )
