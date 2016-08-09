@@ -12,7 +12,7 @@ export default class extends Component {
     return (
       <ul className={ style.tags }>
         <li key={1}>
-          <TagItem />
+          <TagItem tag={{ name: 'elm', count: '1044' }} />
         </li>
       </ul>
     )
